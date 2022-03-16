@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="../static/style.css"
+          th:href="@{/style.css}"/>
+</head>
+<body>
+<h1>Danh sách user</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Fullname</th>
+        <th colspan="2">Action</th>
+    </tr>
+
+    <tr th:each="user : ${users}">
+        <td th:utext="*{user.getId()}"></td>
+        <td th:utext="*{user.getUsername()}"></td>
+        <td th:utext="*{user.getPassword()}"></td>
+        <td th:utext="*{user.getFullName()}"></td>
+        <td><a th:href="@{'/edit?id='+${user.id}}">Edit</a></td>
+        <td><a th:href="@{'/delete?id='+${user.id}}">Delete</a></td>
+    </tr>
+</table>
+
+<div>
+    <a class="view-user" th:href="@{/api/users}">View All User As API</a>
+    <a class="create-user" th:href="@{/create}">Create New User</a>
+</div>
+
+</body>
+</html>
